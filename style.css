@@ -1,0 +1,133 @@
+body {
+    background-color: #f9faff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    width: 90%;
+    max-width: 40.625rem;
+    background: black;
+    border-radius: 0.75rem;
+    padding: 1.5625rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.75rem;
+    color: #11175E;
+    font-weight: bold;
+    text-align: start;
+}
+
+#create-todo-form {
+    display: flex;
+    gap: 0.75rem;
+}
+
+input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.add-task-btn {
+    background-color: #2d70fd;
+    color: white;
+    border: none;
+    padding: 0.75rem 0.9375rem;
+    font-size: 1.375rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-list-section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+}
+
+.todo-item {
+    max-height: 6rem;
+    background: white;
+    padding: 0.9375rem;
+    padding-left: 2rem;
+    border-radius: 0.625rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os filhos */
+    justify-content: space-between; /* Coloca o action-container à direita */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.task-container {
+    flex-grow: 1; /* Ocupa o espaço disponível */
+    display: flex;
+    flex-direction: column; /* Coloca task-info e extra-info em coluna */
+    gap: 0.5rem; /* Espaçamento entre task-info e extra-info */
+}
+
+.task-info {
+    padding-top: 0.8rem;
+}
+
+.extra-info {
+    margin-top: 0.7rem; /* Espaçamento vertical entre a descrição e a etiqueta/data */
+}
+
+.etiqueta {
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    background-color: #f1f3f5;
+    color: #333;
+}
+
+.concluir-tarefa-btn {
+    background: #2d70fd;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    width: 6.25rem;
+}
+
+.tarefa-concluida {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.concluida {
+    opacity: 0.7;
+}
+
+.check-icone {
+    font-size: 1.125rem;
+    color: white;
+    background-color: #2ecc71;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.action-container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    margin-left: 1rem; /* Espaçamento entre o task-container e o action-container */
+}

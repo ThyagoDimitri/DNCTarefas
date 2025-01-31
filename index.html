@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Board de Tarefas</h1>
+        <section id="create-todo-section">
+            <form id="create-todo-form">
+                <input type="text" id="description" placeholder="Nome da tarefa">
+                <input type="text" id="etiqueta" placeholder="Etiqueta">
+                <button type="submit" id="save-task" class="add-task-btn">+</button>
+            </form>
+        </section>
+        <section class="todo-list-section">
+            <ul id="todo-list"></ul>
+        </section>
+    </main>
+</body>
+</html>
