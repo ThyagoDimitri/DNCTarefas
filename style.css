@@ -62,6 +62,26 @@ input {
     list-style: none;
     padding: 0;
     margin-top: 1.25rem;
+    max-height: 425px;
+    overflow-y: auto;
+
+}
+.todo-list-section::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.todo-list-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.todo-list-section::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+
+.todo-list-section::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 .todo-item {
@@ -162,8 +182,8 @@ input {
 
 .action-container {
     display: flex;
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    margin-left: 1rem; /* Espaçamento entre o task-container e o action-container */
+    align-items: center; 
+    margin-left: 1rem; 
 }
 
 footer{
@@ -173,9 +193,9 @@ footer{
     justify-content: flex-end;
 }
 
-/* 🌟 Media Query para MOBILE (até 480px) */
+
 @media (max-width: 600px) {
-    /* Ajusta o container principal */
+
     main {
         width: 343px;
         height: 993px;
@@ -188,7 +208,7 @@ footer{
         background: white;
     }
 
-    /* Título */
+
     h1 {
         font-size: 24px;
         font-weight: bold;
@@ -197,21 +217,21 @@ footer{
         width: 100%;
     }
 
-    /* Empilha os inputs e o botão */
+
     #create-todo-form {
         display: flex;
         flex-direction: column;
         gap: 16px;
     }
 
-    /* Ajusta os inputs */
+
     input {
         border-radius: 8px;
         gap: 10px;
         border: 1px solid #ccc;
     }
 
-    /* Faz o botão ocupar toda a largura */
+
     .add-task-btn {
         width: 360px;
         height: 50px;
@@ -223,13 +243,14 @@ footer{
         cursor: pointer;
     }
 
-    /* Ajusta os itens da lista */
+
     .todo-list-section{
         gap: 8px;
     }
     .todo-item {
-        width: 311px;
-        height: 120px;
+        
+        width:auto;
+        height: auto;
         background: white;
         border-radius: 16px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
@@ -239,15 +260,17 @@ footer{
         gap: 16px;
     }
     .task-info{
-        width: 247px;
+        width: 311px;
         height: 96px;
         gap: 16px;
+        
     }
 
-    /* Ajusta a disposição das informações extras */
+
+
     .extra-info {
-        width: 158px;
-        height: 44px;
+        width: auto;
+        height: auto;
         gap: 8px;
         display: flex;
         align-items: flex-start;
@@ -255,7 +278,7 @@ footer{
         font-size: 0.9rem;
         color: #B1BACB;
     }
-    /* Ajusta as etiquetas */
+
     .etiqueta {
         width: 51px;
         height: 13px;
@@ -269,7 +292,10 @@ footer{
         display: inline-block;
     }
 
-    /* Ajusta o botão de concluir */
+
+    .action-container{
+        padding-left: 4rem;
+    }
     .concluir-tarefa-btn {
         width: 121px;
         height: 44px;
@@ -282,7 +308,7 @@ footer{
         text-align: center;
     }
 
-    /* Ajusta tarefas concluídas */
+  
     .todo-item.concluido {
         opacity: 0.5;
         text-decoration: line-through;
@@ -300,11 +326,13 @@ footer{
         display: block;
     }
 
-    /* Ajusta o rodapé */
-    footer {
-        justify-content: center;
-        padding: 1rem;
-        font-size: 0.9rem;
+    footer{
+        width: 22rem;
+        height: auto;
+        border-top: 1px solid #EEEEEE;
+        color: #B1BACB;
+        display: flex;
+        justify-content: flex-end;
     }
 }
 

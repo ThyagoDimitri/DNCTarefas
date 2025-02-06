@@ -21,7 +21,7 @@ function getCurrentDate() {
     return `Criado em: ${dia}/${mes}/${ano}`;
 }
 
-function ElementoTarefa({ id, description, etiqueta, checked, date }) {
+function elementTask({ id, description, etiqueta, checked, date }) {
     const tarefa = document.createElement('li');
     tarefa.className = `todo-item ${checked ? 'concluida' : ''}`;
 
@@ -63,7 +63,7 @@ function ElementoTarefa({ id, description, etiqueta, checked, date }) {
         const concluirBtn = document.createElement('button');
         concluirBtn.className = 'concluir-tarefa-btn';
         concluirBtn.textContent = 'Concluir';
-        concluirBtn.onclick = () => concluirTarefa(id, descricao, concluirBtn);
+        concluirBtn.onclick = () => completeTask(id, descricao, concluirBtn);
         actionContainer.appendChild(concluirBtn);
     }
 
@@ -88,14 +88,14 @@ function addTaskToList() {
         const newTask = { id: getNextTaskId(), description, etiqueta, checked: false, date: getCurrentDate() };
         tasks.push(newTask);
         setTasksInLocalStorage(tasks);
-        document.getElementById("todo-list").appendChild(ElementoTarefa(newTask));
+        document.getElementById("todo-list").appendChild(elementTask(newTask));
         
         descriptionInput.value = "";
         etiquetaInput.value = "";
     });
 }
 
-function concluirTarefa(id, descricao, btn) {
+function completeTask(id, descricao, btn) {
     descricao.classList.add('tarefa-concluida');
     
     const checkIcon = document.createElement('span');
@@ -106,17 +106,17 @@ function concluirTarefa(id, descricao, btn) {
     tasks = tasks.map(task => task.id === id ? { ...task, checked: true } : task);
     setTasksInLocalStorage(tasks);
 
-    contadorDeTarefasConcluidas(tasks);
+    completeTasksCount(tasks);
 }
 
-function carregarTarefas() {
+function loadTasks() {
     const list = document.getElementById('todo-list');
-    tasks.forEach(task => list.appendChild(ElementoTarefa(task)));
+    tasks.forEach(task => list.appendChild(elementTask(task)));
 }
 
-const contadorDeTarefasConcluidas = (tasks) => {
+const completeTasksCount = (tasks) => {
     const footer = document.getElementById("todo-footer");
-    footer.innerHTML = ""; // Limpa o conteúdo anterior
+    footer.innerHTML = ""; 
 
     const totalConcluidas = tasks.filter(task => task.checked).length;
 
@@ -127,7 +127,7 @@ const contadorDeTarefasConcluidas = (tasks) => {
 
 
 window.onload = function () {
-    carregarTarefas();
+    loadTasks();
     addTaskToList();
-    contadorDeTarefasConcluidas(tasks);
+    completeTasksCount(tasks);
 }
