@@ -1,3 +1,4 @@
+
 body {
     background-color: #f9faff;
     display: flex;
@@ -10,10 +11,11 @@ body {
 main {
     width: 90%;
     max-width: 40.625rem;
-    background: black;
-    border-radius: 0.75rem;
+    background: #FFFFFF;
+    border-radius: 1.5rem;
     padding: 1.5625rem;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0rem 0rem 0.1rem rgba(0, 0, 0, 0.1);
+    border: 0.1rem solid rgba(177, 186, 203, 0.5);
 }
 
 h1 {
@@ -31,12 +33,16 @@ h1 {
 input {
     flex: 1;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    padding-left: 1.75rem;
+    border: 1px solid #EEEEEE;
     border-radius: 0.375rem;
     font-size: 1rem;
+    color:#B1BACB;
 }
 
 .add-task-btn {
+    width: 2.8rem;
+    height: 2.8rem;
     background-color: #2d70fd;
     color: white;
     border: none;
@@ -48,6 +54,9 @@ input {
     align-items: center;
     justify-content: center;
 }
+.add-task-btn:hover{
+    background-color: #0c55f3;
+}
 
 .todo-list-section ul {
     list-style: none;
@@ -56,44 +65,66 @@ input {
 }
 
 .todo-item {
-    max-height: 6rem;
+    width:auto;
+    height: 6.5rem;
     background: white;
     padding: 0.9375rem;
     padding-left: 2rem;
-    border-radius: 0.625rem;
+    border: 1px solid #EEEEEE;
+    border-radius: 1rem;
     margin-bottom: 0.75rem;
     display: flex;
-    align-items: center; /* Centraliza verticalmente os filhos */
-    justify-content: space-between; /* Coloca o action-container à direita */
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap:8px;
 }
 
 .task-container {
-    flex-grow: 1; /* Ocupa o espaço disponível */
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; /* Coloca task-info e extra-info em coluna */
-    gap: 0.5rem; /* Espaçamento entre task-info e extra-info */
+    flex-direction: column;
+    gap: 0.5rem; 
 }
 
 .task-info {
-    padding-top: 0.8rem;
+    width: 500px;
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+.descricao {
+    width: 393px;
+    height: 18px;
+    size: 16px;
+    line-height: 17.6px;
+    font-weight: bold;
+    color:#001747;
 }
 
 .extra-info {
-    margin-top: 0.7rem; /* Espaçamento vertical entre a descrição e a etiqueta/data */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
-
 .etiqueta {
     padding: 0.625rem 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid #B1BACB;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: lowercase;
-    background-color: #f1f3f5;
-    color: #333;
+    color: #B1BACB;
+    gap:10px;
+}
+.data-criacao {
+    font-size: 0.875rem;
+    color: #B1BACB;
 }
 
 .concluir-tarefa-btn {
+    width: 8.7rem;
+    height: 2.7rem;
     background: #2d70fd;
     color: white;
     border: none;
@@ -102,6 +133,9 @@ input {
     font-size: 0.875rem;
     cursor: pointer;
     width: 6.25rem;
+}
+.concluir-tarefa-btn:hover{
+    background-color: #0c55f3;
 }
 
 .tarefa-concluida {
@@ -116,7 +150,7 @@ input {
 .check-icone {
     font-size: 1.125rem;
     color: white;
-    background-color: #2ecc71;
+    background-color: #00D8A7;
     width: 2rem;
     height: 2rem;
     display: flex;
@@ -131,3 +165,146 @@ input {
     align-items: center; /* Centraliza verticalmente o conteúdo */
     margin-left: 1rem; /* Espaçamento entre o task-container e o action-container */
 }
+
+footer{
+    border-top: 1px solid #EEEEEE;
+    color: #B1BACB;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 🌟 Media Query para MOBILE (até 480px) */
+@media (max-width: 600px) {
+    /* Ajusta o container principal */
+    main {
+        width: 343px;
+        height: 993px;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        background: white;
+    }
+
+    /* Título */
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #11175E;
+        text-align: left;
+        width: 100%;
+    }
+
+    /* Empilha os inputs e o botão */
+    #create-todo-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Ajusta os inputs */
+    input {
+        border-radius: 8px;
+        gap: 10px;
+        border: 1px solid #ccc;
+    }
+
+    /* Faz o botão ocupar toda a largura */
+    .add-task-btn {
+        width: 360px;
+        height: 50px;
+        background-color: #2F80ED;
+        color: white;
+        font-weight: bold;
+        border-radius: .5rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Ajusta os itens da lista */
+    .todo-list-section{
+        gap: 8px;
+    }
+    .todo-item {
+        width: 311px;
+        height: 120px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .task-info{
+        width: 247px;
+        height: 96px;
+        gap: 16px;
+    }
+
+    /* Ajusta a disposição das informações extras */
+    .extra-info {
+        width: 158px;
+        height: 44px;
+        gap: 8px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        font-size: 0.9rem;
+        color: #B1BACB;
+    }
+    /* Ajusta as etiquetas */
+    .etiqueta {
+        width: 51px;
+        height: 13px;
+        size: 12px;
+        line-height: 13.2px;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+        background: #E5E7EB;
+        color: #6B7280;
+        border-radius: 0.5rem;
+        display: inline-block;
+    }
+
+    /* Ajusta o botão de concluir */
+    .concluir-tarefa-btn {
+        width: 121px;
+        height: 44px;
+        background-color: #2F80ED;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        border: 1px solid;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    /* Ajusta tarefas concluídas */
+    .todo-item.concluido {
+        opacity: 0.5;
+        text-decoration: line-through;
+    }
+
+    .todo-item.concluido .concluir-tarefa-btn {
+        display: none;
+    }
+
+    .todo-item.concluido::after {
+        content: '✔';
+        color: #27AE60;
+        font-size: 1.5rem;
+        text-align: center;
+        display: block;
+    }
+
+    /* Ajusta o rodapé */
+    footer {
+        justify-content: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+

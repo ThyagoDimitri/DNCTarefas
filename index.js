@@ -1,37 +1,55 @@
-let tasks = [
-    { id: 1, description: 'Implementar tela de listagem de tarefas', etiqueta: 'frontend', checked: false },
-    { id: 2, description: 'Criar endpoint para cadastro de tarefas', etiqueta: 'backend', checked: false },
-    { id: 3, description: 'Implementar protótipo da listagem de tarefas', etiqueta: 'ux', checked: true },
-];
+const getTasksFromLocalStorage = () => {
+    const localTasks = JSON.parse(window.localStorage.getItem('tasks'));
+    return localTasks ? localTasks : [];
+};
 
-const criarElementoTarefa = ({ id, description, etiqueta, checked }) => {
+let tasks = getTasksFromLocalStorage();
+
+const setTasksInLocalStorage = (tasks) => {
+    window.localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+function getNextTaskId() {
+    return tasks.length ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
+}
+
+function getCurrentDate() {
+    const dataAtual = new Date();
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+    return `Criado em: ${dia}/${mes}/${ano}`;
+}
+
+function ElementoTarefa({ id, description, etiqueta, checked, date }) {
     const tarefa = document.createElement('li');
     tarefa.className = `todo-item ${checked ? 'concluida' : ''}`;
 
     const taskInfo = document.createElement('div');
     taskInfo.className = 'task-info';
 
-    const descricao = document.createElement('text');
+    const descricao = document.createElement('span');
+    descricao.className = 'descricao';
     descricao.textContent = description;
     if (checked) descricao.classList.add('tarefa-concluida');
+
+    const extraInfo = document.createElement('div');
+    extraInfo.className = 'extra-info';
 
     const etiquetaBadge = document.createElement('span');
     etiquetaBadge.className = 'etiqueta';
     etiquetaBadge.textContent = etiqueta;
 
     const dataCriacao = document.createElement('span');
-    /*dataCriacao.className = 'data-criacao';
-    dataCriacao.textContent = 'Criado em: 21/08/2024';*/
+    dataCriacao.className = 'data-criacao';
+    dataCriacao.textContent = date;
 
-    taskInfo.appendChild(descricao);
-
-    const extraInfo = document.createElement('div');
-    extraInfo.className = 'extra-info';
     extraInfo.appendChild(etiquetaBadge);
     extraInfo.appendChild(dataCriacao);
 
+    taskInfo.appendChild(descricao);
+    taskInfo.appendChild(extraInfo);
     tarefa.appendChild(taskInfo);
-    tarefa.appendChild(extraInfo);
 
     const actionContainer = document.createElement('div');
     actionContainer.className = 'action-container';
@@ -50,24 +68,66 @@ const criarElementoTarefa = ({ id, description, etiqueta, checked }) => {
     }
 
     tarefa.appendChild(actionContainer);
-
     return tarefa;
-};
+}
+function addTaskToList() {
+    document.getElementById("create-todo-form").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-const concluirTarefa = (id, descricao, btn) => {
+        const descriptionInput = document.getElementById("description");
+        const etiquetaInput = document.getElementById("etiqueta");
+        
+        const description = descriptionInput.value.trim();
+        const etiqueta = etiquetaInput.value.trim();
+
+        if (!description || !etiqueta) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        const newTask = { id: getNextTaskId(), description, etiqueta, checked: false, date: getCurrentDate() };
+        tasks.push(newTask);
+        setTasksInLocalStorage(tasks);
+        document.getElementById("todo-list").appendChild(ElementoTarefa(newTask));
+        
+        descriptionInput.value = "";
+        etiquetaInput.value = "";
+    });
+}
+
+function concluirTarefa(id, descricao, btn) {
     descricao.classList.add('tarefa-concluida');
     
     const checkIcon = document.createElement('span');
     checkIcon.className = 'check-icone';
     checkIcon.innerHTML = '✔';
-
     btn.replaceWith(checkIcon);
-};
+    
+    tasks = tasks.map(task => task.id === id ? { ...task, checked: true } : task);
+    setTasksInLocalStorage(tasks);
+
+    contadorDeTarefasConcluidas(tasks);
+}
+
+function carregarTarefas() {
+    const list = document.getElementById('todo-list');
+    tasks.forEach(task => list.appendChild(ElementoTarefa(task)));
+}
+
+const contadorDeTarefasConcluidas = (tasks) => {
+    const footer = document.getElementById("todo-footer");
+    footer.innerHTML = ""; // Limpa o conteúdo anterior
+
+    const totalConcluidas = tasks.filter(task => task.checked).length;
+
+    const mensagem = document.createElement("p");
+    mensagem.textContent = `${totalConcluidas} Tarefas concluídas: `;
+    footer.appendChild(mensagem);
+}
+
 
 window.onload = function () {
-    const list = document.getElementById('todo-list');
-    tasks.forEach((task) => {
-        const elementoTarefa = criarElementoTarefa(task);
-        list.appendChild(elementoTarefa);
-    });
-};
+    carregarTarefas();
+    addTaskToList();
+    contadorDeTarefasConcluidas(tasks);
+}
